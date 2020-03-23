@@ -52,7 +52,7 @@ module.exports = postcss.plugin("postcss-next-px2rem", options => {
 
     css.walkDecls((decl, i) => {
       if (
-        decl.value.indexOf("px") === -1 ||
+        decl.value.indexOf("pxm") === -1 ||
         !satisfyPropList(decl.prop) ||
         blacklistedSelector(opts.selectorBlackList, decl.parent.selector)
       )
@@ -72,7 +72,7 @@ module.exports = postcss.plugin("postcss-next-px2rem", options => {
 
     if (opts.mediaQuery) {
       css.walkAtRules("media", rule => {
-        if (rule.params.indexOf("px") === -1) return;
+        if (rule.params.indexOf("pxm") === -1) return;
         rule.params = rule.params.replace(pxRegex, pxReplace);
       });
     }
